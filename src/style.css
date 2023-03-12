@@ -1,0 +1,60 @@
+/* Set default font family and color */
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* Apply background color to the header */
+header {
+  background-color: #f5f5f5;
+}
+
+/* Style the navigation links */
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Apply styles to the welcome section */
+#welcome {
+  background-color: #fff;
+  padding: 50px;
+}
+
+#welcome h1 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+#welcome p {
+  font-size: 18px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+#welcome .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+/* Style the footer */
+footer {
+  background-color: #f5f5f5;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: #999;
+}
