@@ -27,7 +27,7 @@ export default{
 					<a href="#" class="btn btn-primary btn-lg" @click="startQuestion">Get Started</a>
 				</div>
 				<div class="col-md-6">
-					<img src="https://via.placeholder.com/400x400" alt="Welcome Image" class="img-fluid">
+					<img src="../assets/logo.jpeg" alt="Welcome Image" class="img-fluid">
 				</div>
 			</div>
 		</div>

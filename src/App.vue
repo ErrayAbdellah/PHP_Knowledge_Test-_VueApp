@@ -1,32 +1,24 @@
 
 
-<template>
-  <div >
-    <nave/>
-  </div>
-  <welcome />
-
-  <question/>
-</template>
 
 <script>
 import nave from './components/nave.vue'
-import welcome from './components/welcome.vue'
-import info from './components/info.vue'
-import stepper from './components/stepper.vue'
-import question from './components/question.vue'
-import resulte from './components/resulte.vue'
-import footer from './components/footer.vue'
+import foter from './components/foter.vue'
 export default{
-  setup(){
-   return {
-      
-   }
-  },
-  components:{nave,welcome,info,stepper,question,resulte,footer}
+  name:"app",
+  components:{nave,foter}
 }
 
 </script>
+
+<template>
+  <nave/>
+
+  <router-view></router-view>
+
+  <foter></foter>
+</template>
+
 <style scoped>
 
 </style>
