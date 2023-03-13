@@ -24,7 +24,7 @@ export default{
 				<div class="col-md-6">
 					<h1>Welcome to the Quiz!</h1>
 					<p>Answer the following questions to test your knowledge.</p>
-					<a href="#" class="btn but btn-lg text-light" @click="startQuestion">Get Started</a>
+					<a href="/question" class="btn but btn-lg text-light" >Get Started</a>
 					<div class="mt-4 p-3 prg text-secondary">
 						<p>
 							A quiz Vue.js website is a web application that allows users to participate in interactive quizzes.

@@ -15,6 +15,7 @@ export default{
   <nave/>
 
   <router-view></router-view>
+  <!-- <component :is="generateComponent"></component> -->
 
   <foter></foter>
 </template>
