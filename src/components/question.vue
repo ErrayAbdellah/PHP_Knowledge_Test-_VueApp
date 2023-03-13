@@ -1,13 +1,27 @@
 <script>
-import { ref } from 'vue' ;
+import { computed, ref,reactive } from 'vue' ;
 
-const count = ref(0)
+
+
 export default{
 
   setup(){
     name: "question"
+    const count = ref(0)
+
+    const q = reactive({
+    correct:[],
+    incorrect:[],
+
+    })
+    const progress = computed(() => {
+      let percentage =  Math.round((count.value / 10) * 100);
+      return 'width:'+percentage+'%;'
+    });
+    
     return{
       count,
+      progress,
       questions: 
         [
             {
@@ -227,11 +241,25 @@ export default{
           this.count++;
           console.log(this.count)
         },
-        nextQustion:function(){
-          // $event.preventDefault();
-          this.count <= 4 ? this.count ++: window.location.href="/resulte";
-          console.log(this.count)
-        }
+        nextQustion:function(event,index){
+          
+          let target = event.currentTarget;
+          console.log(target);
+          if(index==this.questions[this.count].answer){
+            target.style.backgroundColor="rgb(110, 247, 124)";
+            this.q.correct.push(index);
+            console.log(q.correct);
+          }else{
+            target.style.backgroundColor=" rgb(255, 109, 109)";
+            console.log("inCorrect");
+          }
+
+          setTimeout(() => {
+            this.count <= 9 ? this.count ++: window.location.href="/resulte";
+            target.style.backgroundColor=" rgb(141, 214, 178)";
+          }, 1000);
+          // console.log(this.count)
+        },
     }
   }
 }
@@ -247,12 +275,11 @@ export default{
             <!-- Stepper -->
 						<div class="d-flex justify-content-center my-4">
               <div class="progress w-75">
-                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: 25%;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">Step 1 of 4</div>
+                <div class="progress-bar progress-bar-striped bg-success" role="progressbar" :style="progress" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100">Step 1 of 4</div>
 							</div>
 						</div>
             
 						<!-- Question -->
-            
 
               <div class="card mb-4 text-center p-1 pb-3" id="qtion">
                 <div class="card-body">
@@ -260,22 +287,14 @@ export default{
                   <p class="card-text">{{ questions[count].question }}</p>
                   <div class="d-flex justify-content-center flex-wrap">
                     
-                    <div class="w-75 mt-3 p-3 btn buton" @click.prevent="nextQustion()" v-for="(option,index) in questions[count].options" :key="index">
+                    <div class="w-75 mt-3 p-3 btn buton" @click.prevent="nextQustion($event,index)" v-for="(option,index) in questions[count].options" :key="index">
                       <label class="form-check-label"  for="question1-1">
                         {{ option }}
                       </label>
                     </div>
-                    
                   </div>
                 </div>
               </div>
-              <!-- Navigation Buttons -->
-              <!-- <form @submit="nextQustion">
-              <div class="d-flex justify-content-center my-4">
-                
-                <input type="submit" class="btn" id="next-button"  value="Next">
-              </div>
-            </form> -->
             </div>
           </div>
         </div>
@@ -298,5 +317,6 @@ export default{
 }
 #next-button{
   background-color: aqua;
+  color: rgb(255, 109, 109);
 }
 </style>
