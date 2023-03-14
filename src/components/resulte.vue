@@ -1,119 +1,94 @@
- <script >
-// import { ref } from 'vue'
+<template>
+  <div>
+    <h2>Results</h2>
+    <p>Correct: {{ correct.length }}</p>
+    <p>Incorrect: {{ incorrect.length }}</p>
+    <ul>
+      <li v-for="(question, index) in questions" :key="index">
+        {{ question.question }} - 
+        <template v-if="correct.includes(index)">
+          <span style="color: green;">Correct</span>
+        </template>
+        <template v-else>
+          <span style="color: red;">Incorrect</span>
+        </template>
+      </li>
+    </ul>
+  </div>
+</template>
 
-//   export default {
-//     questions: 
-//         [
-//             {
-//                 "question": "What is Vue JS?",
-//                 "options": [
-//                     "A backend framework",
-//                     "A frontend framework",
-//                     "A database management system",
-//                     "A programming language"
-//                 ],
-//                 "answer": "1"
-//             },
-//             {
-//                 "question": "What is the Vue instance?",
-//                 "options": [
-//                     "The entry point of a Vue app",
-//                     "The main component of a Vue app",
-//                     "A configuration object for a Vue app",
-//                     "A JavaScript class for a Vue app"
-//                 ],
-//                 "answer": "0"
-//             },
-//             {
-//                 "question": "What is a Vue component?",
-//                 "options": [
-//                     "A template for rendering HTML",
-//                     "A JavaScript class for managing state",
-//                     "A reusable piece of code for rendering HTML",
-//                     "A configuration object for a Vue app"
-//                 ],
-//                 "answer": "2"
-//             },
-//             {
-//                 "question": "What is a Vue directive?",
-//                 "options": [
-//                     "A function that manipulates the DOM",
-//                     "A function that manipulates the state",
-//                     "A function that handles events",
-//                     "A function that renders HTML"
-//                 ],
-//                 "answer": "0"
-//             },
-//             {
-//                 "question": "What is the Vue router?",
-//                 "options": [
-//                     "A tool for managing HTTP requests",
-//                     "A tool for managing browser history",
-//                     "A tool for managing database queries",
-//                     "A tool for managing network requests"
-//                 ],
-//                 "answer": "1"
-//             },
-//             {
-//                 "question": "What is Vuex in Vue JS?",
-//                 "options": [
-//                     "A state management pattern and library",
-//                     "A router library",
-//                     "A form validation library",
-//                     "A server-side rendering library"
-//                 ],
-//                 "answer": "0"
-//             },
-//             {
-//                 "question": "What is the difference between props and state in Vue JS?",
-//                 "options": [
-                    
-//                     "Props are used for passing data between parent and child components, while state is used for managing data within a component",
-//                     "Props are used for managing data within a component, while state is used for passing data between parent and child components",
-//                     "Props and state are two different names for the same thing",
-//                     "Props and state are both used for managing data within a component"
-//                 ],
-//                 "answer": "0"
-//             },
-//             {
-//                 "question": "What is a computed property in Vue JS?",
-//                 "options": [
-//                     "A property that is calculated based on other properties",
-//                     "A property that is set in the Vue instance",
-//                     "A property that is used to define the template of a component",
-//                     "A property that is used to define a method in a component"
-//                 ],
-//                 "answer": "0"
-//             },
-//             {
-//                 "question": "What is the difference between v-bind and v-model in Vue JS?",
-//                 "options": [
-//                     "v-bind is used for one-way data binding, while v-model is used for two-way data binding",
-//                     "v-bind is used for two-way data binding, while v-model is used for one-way data binding",
-//                     "v-bind and v-model are two different names for the same thing",
-//                     "v-bind and v-model are both used for managing data within a component"
-//                 ],
-//                 "answer": "0"
-//             },
-//             {
-//                 "question": "What is a lifecycle hook in Vue JS?",
-//                 "options": [
-//                 "A function that is called when a component is created, updated, or destroyed",
-//                 "A function that is called when an HTTP request is made",
-//                 "A function that is called when a user clicks on a button",
-//                 "A function that is called when a form is submitted"
-//                 ],
-//                 "answer": "0"
-//             },
-//         ],
-//         // 
+<script>
+
+
+export default {
+  computed: {
+    questions() {
+      return this.$store.state.questions
+    },
+    correct() {
+      return this.$store.state.correct
+    },
+    incorrect() {
+      return this.$store.state.incorrect
+    }
+  },
+  beforeRouteLeave(to, from, next) {
+    this.$store.dispatch('fetchData').then(() => {
+      next();
+    }).catch((err) => {
+      console.log(err);
+      next(false);
+    });
+  }
+}
+
+
+
+
+// export default {
+  
+//   computed: {
+//     questions() {
+//       return this.$store.state.questions
+//     },
+//     correct() {
+//       return this.$store.state.correct
+//     },
+//     incorrect() {
+//       return this.$store.state.incorrect
+//     }
 //   }
+// }
+</script>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <!-- <script >
+
 export default{
 
     computed:{
         questions(){
             return this.$store.state.questions
-        }
+        },
     },
     setup(){
         return{
@@ -124,10 +99,10 @@ export default{
 }
 
 
-</script> 
+</script>  -->
 
-<template>
-  <!-- <div class="container">
+<!-- <template>
+  <div class="container">
     <h1>Quiz Results</h1>
     <hr>
     <div v-for="(question, index) in questions" :key="index">
@@ -141,12 +116,13 @@ export default{
       </ul>
     </div>
   </div> -->
-  <div>hi</div>
+  <!-- <div>hi</div> -->
   <!-- <div>{{$store.state.questions    [0].options }}</div> -->
-  <div>{{questions[7].answer }}</div>
+  <!-- <div>{{questions[7].answer }}</div>
+  <div>{{$store.state.correct }}</div> 
 
 </template>
 
 <style scoped>
 
-</style>
+</style>-->

@@ -5,11 +5,8 @@ export default{
 
     const welcom = reactive({
       name:"welcom",
-	  startQuestion:function(){
-		
-	  }
     }) 
-    // const name = "welcome"
+    
     return{
       welcom,
     }
